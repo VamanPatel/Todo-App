@@ -27,10 +27,7 @@ export class TodosComponent implements OnInit {
     private dialog: MatDialog,
     private fb: FormBuilder
   ) {
-    this.todoName = new FormControl('', [
-      Validators.required,
-      Validators.maxLength(2),
-    ]);
+    this.todoName = new FormControl('', [Validators.required]);
 
     this.form = fb.group({
       todoName: this.todoName,
