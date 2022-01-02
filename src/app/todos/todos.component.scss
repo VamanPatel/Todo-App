@@ -1,0 +1,87 @@
+.heading-section {
+  background: linear-gradient(to right, #0093e9, #80d0c7);
+
+  padding: 100px;
+  padding-bottom: 150px;
+
+  h1.title {
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 1px 2px rgba(black, 0.12);
+  }
+}
+
+.container {
+  max-width: 800px;
+}
+
+.add-todo-box-container {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.add-todo-box-container .field {
+  gap: 10px;
+}
+
+.add-todo-box {
+  padding: 25px;
+  background: white;
+
+  border-radius: 4px;
+  margin-top: -68px;
+
+  box-shadow: 0 4px 12px rgba(black, 0.08);
+}
+
+@media (max-width: 991px) {
+  .container {
+    max-width: 700px !important;
+  }
+}
+@media (max-width: 791px) {
+  .container {
+    max-width: 540px !important;
+  }
+}
+@media (max-width: 591px) {
+  .container {
+    max-width: 380px !important;
+  }
+}
+
+@media (max-width: 451px) {
+  .container {
+    max-width: 360px !important;
+  }
+  .add-todo-box-container .field {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .field {
+    .inputDiv {
+      width: 100%;
+    }
+  }
+
+  .heading-section {
+    padding: 60px;
+    padding-bottom: 100px;
+  }
+
+  .add-todo-box-container .showError {
+    text-align: center;
+  }
+}
+@media (max-width: 391px) {
+  .container {
+    max-width: 320px !important;
+  }
+
+  .add-todo-box {
+    padding: 20px;
+  }
+}
