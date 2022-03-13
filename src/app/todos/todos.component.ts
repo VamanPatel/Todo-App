@@ -8,8 +8,9 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
+import { PostTask } from '../Shared/api/modals/taskResponse.model';
+import { TodoService } from '../Shared/api/services/todos.service';
 import { Todo } from '../Shared/todo.model';
-import { TodosService } from '../Shared/todos.service';
 
 @Component({
   selector: 'app-todos',
@@ -17,13 +18,17 @@ import { TodosService } from '../Shared/todos.service';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
-  todos!: Todo[];
+  todos!: PostTask[];
   showValidationErrors!: boolean;
   todoName!: FormControl;
   form!: FormGroup;
 
+  hideContent: boolean = false;
+  isLoading: boolean = false;
+  isNodata: boolean = false;
+
   constructor(
-    private dataService: TodosService,
+    private dataService: TodoService,
     private dialog: MatDialog,
     private fb: FormBuilder
   ) {
@@ -35,27 +40,61 @@ export class TodosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todos = this.dataService.getAllTodos();
+    this.getTask();
+  }
+
+  getTask() {
+    this.isLoading = true;
+    this.hideContent = false;
+    this.dataService.getTask().subscribe(
+      (res) => {
+        if (res.isSuccess) {
+          console.log(res);
+
+          if (res.result.length <= 0) {
+            this.isNodata = true;
+          }
+          this.todos = res.result;
+          this.isLoading = false;
+          this.hideContent = true;
+        }
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   onFormSubmit() {
+    this.hideContent = false;
+
+    var data = {
+      description: this.todoName.value,
+      completed: false,
+    };
     if (this.todoName.invalid) {
       this.showValidationErrors = true;
     } else {
-      this.dataService.addTodo(new Todo(this.todoName.value));
+      this.dataService.addTask(data).subscribe(
+        (res) => {
+          console.log(res);
+          this.getTask();
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
 
       this.showValidationErrors = false;
       this.todoName.reset();
     }
   }
 
-  toggleCompleted(todo: Todo) {
+  toggleCompleted(todo: PostTask) {
     todo.completed = !todo.completed;
   }
 
-  editTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo);
-
+  editTodo(todo: PostTask) {
     let dialogRef = this.dialog.open(EditTodoDialogComponent, {
       width: '700px',
       data: todo,
@@ -63,13 +102,10 @@ export class TodosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.dataService.updateTodo(index, result);
+        // this.dataService.updateTodo(index, result);
       }
     });
   }
 
-  deleteTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo);
-    this.dataService.deleteTodo(index);
-  }
+  deleteTodo(todo: PostTask) {}
 }

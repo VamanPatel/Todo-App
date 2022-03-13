@@ -1,0 +1,46 @@
+@mixin Loader {
+    animation: spinAround 500ms infinite linear;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 1em;
+    position: relative;
+    width: 1em;
+}
+
+.loginWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #80d0c7;
+    .field {
+        margin: 0;
+    }
+    .loginButton {
+        display: flex;
+        justify-content: end;
+    }
+    .bottomSection {
+        text-align: right;
+    }
+}
+
+.loginWrapper .login {
+    width: 40%;
+    // height: 80%;
+    border-radius: 20px;
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bulma-loader-mixin {
+    @include Loader;
+}

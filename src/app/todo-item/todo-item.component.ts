@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PostTask } from '../Shared/api/modals/taskResponse.model';
 import { Todo } from '../Shared/todo.model';
 
 @Component({
@@ -7,7 +8,7 @@ import { Todo } from '../Shared/todo.model';
   styleUrls: ['./todo-item.component.scss'],
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo!: Todo;
+  @Input() todo!: PostTask;
 
   @Output() todoClicked: EventEmitter<void> = new EventEmitter();
   @Output() editClicked: EventEmitter<void> = new EventEmitter();

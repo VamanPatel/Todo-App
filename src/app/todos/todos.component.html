@@ -23,6 +23,7 @@
             type="submit"
             class="button alt-gradient-button"
             (click)="onFormSubmit()"
+            [disabled]="form.invalid"
           >
             <i class="material-icons">add</i>
             Add
@@ -39,7 +40,10 @@
   </div>
 </div>
 
-<section class="section">
+<div class="showLoader" *ngIf="isLoading">
+  <span class="bulma-loader-mixin" style="margin-left: 5px"></span>
+</div>
+<section class="section" *ngIf="hideContent">
   <div class="container">
     <div class="todos-list">
       <app-todo-item

@@ -1,3 +1,16 @@
+@mixin Loader {
+  animation: spinAround 500ms infinite linear;
+  border: 5px solid #ccc;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 3em;
+  position: relative;
+  width: 3em;
+}
+
 .heading-section {
   background: linear-gradient(to right, #0093e9, #80d0c7);
 
@@ -33,6 +46,16 @@
   margin-top: -68px;
 
   box-shadow: 0 4px 12px rgba(black, 0.08);
+}
+
+.bulma-loader-mixin {
+  @include Loader;
+}
+
+.showLoader {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
 }
 
 @media (max-width: 991px) {

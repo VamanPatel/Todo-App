@@ -1,0 +1,86 @@
+<div class="loginWrapper">
+    <div class="login">
+        <div class="header" style="text-align: center">
+            <h2>Login</h2>
+        </div>
+        <!-- ---------------------------------------- Email ---------------------------------------- -->
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" [ngClass]="{ 'is-danger': email.invalid && email.touched }" style="margin-bottom: 10px" type="email" placeholder="Email" [formControl]="email" />
+                <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+                <span class="icon is-small is-right">
+          <i
+            class="fas fa-exclamation-triangle"
+            *ngIf="email.invalid && email.touched"
+            [ngStyle]="{
+              color: email.invalid && email.touched ? '#f14668' : '#DBDBDB'
+            }"
+          ></i>
+        </span>
+            </div>
+            <div *ngIf="email.invalid && email.touched">
+                <p class="help is-danger">This email is invalid</p>
+            </div>
+        </div>
+        <!-- --------------------------------------- password ---------------------------------------- -->
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" [ngClass]="{ 'is-danger': password.invalid && password.touched }" style="margin-bottom: 10px" type="password" placeholder="Password" [formControl]="password" />
+                <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+                <span class="icon is-small is-right">
+          <i
+            class="fas fa-exclamation-triangle"
+            *ngIf="password.invalid && password.touched"
+            [ngStyle]="{
+              color:
+                password.invalid && password.touched ? '#f14668' : '#DBDBDB'
+            }"
+          ></i>
+        </span>
+                <div *ngIf="password.invalid && password.touched">
+                    <p class="help is-danger">This password is invalid</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control" style="
+          display: flex;
+          justify-content: end;
+          font-size: 0.8rem;
+          font-weight: 500;
+          margin-bottom: 10px;
+        ">
+                <a (click)="forgotPassword()" style="color: #000; text-decoration: underline">Forgot Password</a
+        >
+      </div>
+    </div>
+
+    <div class="field loginButton">
+      <p class="control">
+        <button class="button is-success" [disabled]="form.invalid">
+          Login
+          <span
+            class="bulma-loader-mixin"
+            style="margin-left: 5px"
+            *ngIf="isLogin"
+          ></span>
+        </button>
+      </p>
+    </div>
+
+    <div class="bottomSection">
+      <hr style="background-color: #a5a0a0 !important ; margin: 0.5rem 0" />
+      <div class="signup">
+        New to Todos?
+        <a class="newAccount" [routerLink]="['/auth/signup']"
+          >Create New Account</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
