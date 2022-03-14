@@ -21,4 +21,15 @@ export class TodoService {
   getTask(): Observable<TaskResponse> {
     return this.http.get<TaskResponse>(`${environment.api_url}/tasks`);
   }
+
+  updateTask(id: string, data: any): Observable<TaskResponse> {
+    return this.http.patch<TaskResponse>(
+      `${environment.api_url}/tasks/${id}`,
+      data
+    );
+  }
+
+  deleteTask(id: string): Observable<TaskResponse> {
+    return this.http.delete<TaskResponse>(`${environment.api_url}/tasks/${id}`);
+  }
 }

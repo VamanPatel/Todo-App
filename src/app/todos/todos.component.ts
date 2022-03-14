@@ -92,20 +92,67 @@ export class TodosComponent implements OnInit {
 
   toggleCompleted(todo: PostTask) {
     todo.completed = !todo.completed;
+    let todoCopy = {
+      description: todo.description,
+      completed: todo.completed,
+    };
+    this.dataService.updateTask(todo._id, todoCopy).subscribe(
+      (res) => {
+        if (res.isSuccess) {
+          this.todos = this.todos.filter((i) => {
+            return i._id != todo._id;
+          });
+          console.log(this.todos);
+        }
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+    console.log(todo);
   }
 
   editTodo(todo: PostTask) {
     let dialogRef = this.dialog.open(EditTodoDialogComponent, {
       width: '700px',
       data: todo,
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // this.dataService.updateTodo(index, result);
+      if (result.confirm) {
+        let todoCopy = {
+          description: result.description,
+          completed: result.data.completed,
+        };
+        console.log(todoCopy);
+
+        this.dataService.updateTask(result.data._id, todoCopy).subscribe(
+          (res) => {
+            if (res.isSuccess) {
+              console.log(res.result);
+              this.getTask();
+            }
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
       }
     });
   }
 
-  deleteTodo(todo: PostTask) {}
+  deleteTodo(todo: PostTask) {
+    this.dataService.deleteTask(todo._id).subscribe(
+      (res) => {
+        if (res.isSuccess) {
+          console.log(res.result);
+          this.getTask();
+        }
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
 }
