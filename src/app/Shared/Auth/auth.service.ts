@@ -11,8 +11,11 @@ import { signUpResponse } from '../api/signUpresponse.model';
 export class AuthService {
   constructor(private route: Router, private http: HttpClient) {}
 
-  signIn(data: { userName: string; password: string }) {
-    return this.http.post<any[]>(`${environment}/users/login`, data);
+  signIn(data: { email: any; password: any }) {
+    return this.http.post<signUpResponse>(
+      `${environment.api_url}/users/login`,
+      data
+    );
   }
 
   signup(data: signUp) {

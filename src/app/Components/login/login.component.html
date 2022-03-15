@@ -1,16 +1,23 @@
 <div class="loginWrapper">
-    <div class="login">
-        <div class="header" style="text-align: center">
-            <h2>Login</h2>
-        </div>
-        <!-- ---------------------------------------- Email ---------------------------------------- -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [ngClass]="{ 'is-danger': email.invalid && email.touched }" style="margin-bottom: 10px" type="email" placeholder="Email" [formControl]="email" />
-                <span class="icon is-small is-left">
+  <div class="login">
+    <div class="header" style="text-align: center">
+      <h2>Login</h2>
+    </div>
+    <!-- ---------------------------------------- Email ---------------------------------------- -->
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          [ngClass]="{ 'is-danger': email.invalid && email.touched }"
+          style="margin-bottom: 10px"
+          type="email"
+          placeholder="Email"
+          [formControl]="email"
+        />
+        <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
-                <span class="icon is-small is-right">
+        <span class="icon is-small is-right">
           <i
             class="fas fa-exclamation-triangle"
             *ngIf="email.invalid && email.touched"
@@ -19,19 +26,26 @@
             }"
           ></i>
         </span>
-            </div>
-            <div *ngIf="email.invalid && email.touched">
-                <p class="help is-danger">This email is invalid</p>
-            </div>
-        </div>
-        <!-- --------------------------------------- password ---------------------------------------- -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [ngClass]="{ 'is-danger': password.invalid && password.touched }" style="margin-bottom: 10px" type="password" placeholder="Password" [formControl]="password" />
-                <span class="icon is-small is-left">
+      </div>
+      <div *ngIf="email.invalid && email.touched">
+        <p class="help is-danger">This email is invalid</p>
+      </div>
+    </div>
+    <!-- --------------------------------------- password ---------------------------------------- -->
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          [ngClass]="{ 'is-danger': password.invalid && password.touched }"
+          style="margin-bottom: 10px"
+          type="password"
+          placeholder="Password"
+          [formControl]="password"
+        />
+        <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
         </span>
-                <span class="icon is-small is-right">
+        <span class="icon is-small is-right">
           <i
             class="fas fa-exclamation-triangle"
             *ngIf="password.invalid && password.touched"
@@ -41,28 +55,38 @@
             }"
           ></i>
         </span>
-                <div *ngIf="password.invalid && password.touched">
-                    <p class="help is-danger">This password is invalid</p>
-                </div>
-            </div>
+        <div *ngIf="password.invalid && password.touched">
+          <p class="help is-danger">This password is invalid</p>
         </div>
+      </div>
+    </div>
 
-        <div class="field">
-            <div class="control" style="
+    <div class="field">
+      <div
+        class="control"
+        style="
           display: flex;
           justify-content: end;
           font-size: 0.8rem;
           font-weight: 500;
           margin-bottom: 10px;
-        ">
-                <a (click)="forgotPassword()" style="color: #000; text-decoration: underline">Forgot Password</a
+        "
+      >
+        <a
+          (click)="forgotPassword()"
+          style="color: #000; text-decoration: underline"
+          >Forgot Password</a
         >
       </div>
     </div>
 
     <div class="field loginButton">
       <p class="control">
-        <button class="button is-success" [disabled]="form.invalid">
+        <button
+          class="button is-success"
+          [disabled]="form.invalid"
+          (click)="login()"
+        >
           Login
           <span
             class="bulma-loader-mixin"

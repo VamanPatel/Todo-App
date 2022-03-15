@@ -155,4 +155,9 @@ export class TodosComponent implements OnInit {
       }
     );
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 }

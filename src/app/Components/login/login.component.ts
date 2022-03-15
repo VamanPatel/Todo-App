@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Shared/Auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,12 @@ export class LoginComponent implements OnInit {
   email!: FormControl;
   password!: FormControl;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private snak: MatSnackBar
+  ) {
     this.email = new FormControl('', [Validators.required]);
     this.password = new FormControl('', [Validators.required]);
 
@@ -34,4 +42,27 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
   forgotPassword() {}
+
+  login() {
+    this.isLogin = true;
+    let data = {
+      email: this.email.value,
+      password: this.password.value,
+    };
+
+    this.auth.signIn(data).subscribe(
+      (res) => {
+        console.log(res.token);
+        this.isLogin = false;
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['todos']);
+      },
+      (err) => {
+        console.error(err.error.error);
+        this.isLogin = false;
+        this.form.reset();
+        this.snak.open(err.error.error, 'Ok', { duration: 3000 });
+      }
+    );
+  }
 }

@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Shared/Auth/auth.service';
 
@@ -28,7 +29,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private snak: MatSnackBar
   ) {
     this.email = new FormControl('', [Validators.required]);
     this.userName = new FormControl('', [Validators.required]);
