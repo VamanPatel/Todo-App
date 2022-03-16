@@ -1,17 +1,24 @@
 <div class="loginWrapper">
-    <div class="login">
-        <div class="header" style="text-align: center">
-            <h2>Signup</h2>
-        </div>
+  <div class="login">
+    <div class="header" style="text-align: center">
+      <h2>Signup</h2>
+    </div>
 
-        <!-- ---------------------------------------- Username ---------------------------------------- -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [ngClass]="{ 'is-danger': userName.invalid && userName.touched }" style="margin-bottom: 10px" type="email" placeholder="Username" [formControl]="userName" />
-                <span class="icon is-small is-left">
+    <!-- ---------------------------------------- Username ---------------------------------------- -->
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          [ngClass]="{ 'is-danger': userName.invalid && userName.touched }"
+          style="margin-bottom: 10px"
+          type="email"
+          placeholder="Username"
+          [formControl]="userName"
+        />
+        <span class="icon is-small is-left">
           <i class="fa-solid fa-user"></i>
         </span>
-                <span class="icon is-small is-right">
+        <span class="icon is-small is-right">
           <i
             class="fas fa-exclamation-triangle"
             *ngIf="userName.invalid && userName.touched"
@@ -21,20 +28,27 @@
             }"
           ></i>
         </span>
-            </div>
-            <div *ngIf="userName.invalid && userName.touched">
-                <p class="help is-danger">This userName is invalid</p>
-            </div>
-        </div>
+      </div>
+      <div *ngIf="userName.invalid && userName.touched">
+        <p class="help is-danger">This userName is invalid</p>
+      </div>
+    </div>
 
-        <!-- ---------------------------------------- Email ---------------------------------------- -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [ngClass]="{ 'is-danger': email.invalid && email.touched }" style="margin-bottom: 10px" type="email" placeholder="Email" [formControl]="email" />
-                <span class="icon is-small is-left">
+    <!-- ---------------------------------------- Email ---------------------------------------- -->
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          [ngClass]="{ 'is-danger': email.invalid && email.touched }"
+          style="margin-bottom: 10px"
+          type="email"
+          placeholder="Email"
+          [formControl]="email"
+        />
+        <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
-                <span class="icon is-small is-right">
+        <span class="icon is-small is-right">
           <i
             class="fas fa-exclamation-triangle"
             *ngIf="email.invalid && email.touched"
@@ -43,19 +57,31 @@
             }"
           ></i>
         </span>
-            </div>
-            <div *ngIf="email.invalid && email.touched">
-                <p class="help is-danger">This email is invalid</p>
-            </div>
-        </div>
-        <!-- --------------------------------------- password ---------------------------------------- -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [ngClass]="{ 'is-danger': password.invalid && password.touched }" style="margin-bottom: 10px" type="password" placeholder="Password" [formControl]="password" />
-                <span class="icon is-small is-left">
+      </div>
+      <div *ngIf="email.invalid && email.touched">
+        <p class="help is-danger" *ngIf="email.hasError('required')">
+          Email is Required
+        </p>
+        <p class="help is-danger" *ngIf="email.hasError('error')">
+          Invalid Email
+        </p>
+      </div>
+    </div>
+    <!-- --------------------------------------- password ---------------------------------------- -->
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          [ngClass]="{ 'is-danger': password.invalid && password.touched }"
+          style="margin-bottom: 10px"
+          type="password"
+          placeholder="Password"
+          [formControl]="password"
+        />
+        <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
         </span>
-                <span class="icon is-small is-right">
+        <span class="icon is-small is-right">
           <i
             class="fas fa-exclamation-triangle"
             *ngIf="password.invalid && password.touched"
@@ -65,20 +91,33 @@
             }"
           ></i>
         </span>
-                <div *ngIf="password.invalid && password.touched">
-                    <p class="help is-danger">This password is invalid</p>
-                </div>
-            </div>
+        <div *ngIf="password.invalid && password.touched">
+          <p class="help is-danger" *ngIf="password.hasError('required')">
+            Password is required
+          </p>
+          <p class="help is-danger" *ngIf="password.hasError('pattern')">
+            Password Must Contain 1 uppercase, 1 lowercase , 1 digit Atleast 8
+            Character
+          </p>
         </div>
+      </div>
+    </div>
 
-        <!-- ---------------------------------------- Age ---------------------------------------- -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [ngClass]="{ 'is-danger': age.invalid && age.touched }" style="margin-bottom: 10px" type="number" placeholder="Age" [formControl]="age" />
-                <span class="icon is-small is-left">
+    <!-- ---------------------------------------- Age ---------------------------------------- -->
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          [ngClass]="{ 'is-danger': age.invalid && age.touched }"
+          style="margin-bottom: 10px"
+          type="number"
+          placeholder="Age"
+          [formControl]="age"
+        />
+        <span class="icon is-small is-left">
           <i class="fa-solid fa-cake-candles"></i>
         </span>
-                <span class="icon is-small is-right">
+        <span class="icon is-small is-right">
           <i
             class="fas fa-exclamation-triangle"
             *ngIf="age.invalid && age.touched"
@@ -87,17 +126,21 @@
             }"
           ></i>
         </span>
-            </div>
-            <div *ngIf="age.invalid && age.touched">
-                <p class="help is-danger">This Age is invalid</p>
-            </div>
-        </div>
+      </div>
+      <div *ngIf="age.invalid && age.touched">
+        <p class="help is-danger">This Age is invalid</p>
+      </div>
+    </div>
 
-        <!-- ---------------------------------- login button ----------------------------------- -->
+    <!-- ---------------------------------- login button ----------------------------------- -->
 
-        <div class="field loginButton">
-            <p class="control">
-                <button class="button is-success" [disabled]="form.invalid" (click)="signUp()">
+    <div class="field loginButton">
+      <p class="control">
+        <button
+          class="button is-success"
+          [disabled]="form.invalid"
+          (click)="signUp()"
+        >
           Signup
           <span
             class="bulma-loader-mixin"
@@ -105,15 +148,15 @@
             *ngIf="isSignup"
           ></span>
         </button>
-            </p>
-        </div>
-
-        <div class="bottomSection">
-            <hr style="background-color: #a5a0a0 !important ; margin: 0.5rem 0" />
-            <div class="signup">
-                Already have account
-                <a class="newAccount" [routerLink]="['/auth/login']">Login</a>
-            </div>
-        </div>
+      </p>
     </div>
+
+    <div class="bottomSection">
+      <hr style="background-color: #a5a0a0 !important ; margin: 0.5rem 0" />
+      <div class="signup">
+        Already have account
+        <a class="newAccount" [routerLink]="['/auth/login']">Login</a>
+      </div>
+    </div>
+  </div>
 </div>

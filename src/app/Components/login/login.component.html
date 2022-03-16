@@ -28,7 +28,12 @@
         </span>
       </div>
       <div *ngIf="email.invalid && email.touched">
-        <p class="help is-danger">This email is invalid</p>
+        <p class="help is-danger" *ngIf="email.hasError('required')">
+          Email is Required
+        </p>
+        <p class="help is-danger" *ngIf="email.hasError('error')">
+          Invalid Email
+        </p>
       </div>
     </div>
     <!-- --------------------------------------- password ---------------------------------------- -->
